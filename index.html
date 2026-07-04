@@ -1,10 +1,150 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My First GitHub Site</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wizard's Page</title>
+    <style>
+        /* GREY THEME BACKGROUND */
+        body {
+            background-color: #222222; 
+            color: #e0e0e0;
+            font-family: 'Courier New', Courier, monospace; /* Gives a slightly more magical/code vibe */
+            text-align: center;
+            padding: 50px 20px;
+            margin: 0;
+        }
+        
+        /* CRIMSON TITLE WITH NEON BLUE FLARE */
+        h1 {
+            color: #dc143c; /* Crimson Red */
+            font-size: 3.5em;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 5px;
+            /* The text-shadow creates the neon blue flare */
+            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00bfff; 
+        }
+
+        .subtitle {
+            color: #888888;
+            margin-bottom: 50px;
+            font-size: 1.2em;
+        }
+
+        /* CUSTOM GLOWING BUTTONS */
+        .links a {
+            display: inline-block;
+            margin: 15px;
+            padding: 15px 35px;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-transform: uppercase;
+            background-color: #8b0000; /* Dark Crimson */
+            border: 2px solid #dc143c;
+            box-shadow: 0 0 15px rgba(220, 20, 60, 0.6); /* Crimson glow */
+            transition: all 0.3s ease;
+        }
+
+        /* Hover effect: Buttons flare Neon Blue when you mouse over them */
+        .links a:hover {
+            background-color: #222222;
+            color: #00ffff;
+            border-color: #00ffff;
+            box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
+            transform: scale(1.05);
+        }
+
+        /* DIVIDER LINE */
+        hr {
+            border: 0;
+            height: 2px;
+            background: #dc143c;
+            box-shadow: 0 0 10px #00ffff;
+            margin: 60px auto;
+            width: 75%;
+        }
+
+        /* GALLERY SECTION */
+        h2 {
+            color: #dc143c;
+            font-size: 2.5em;
+            text-shadow: 0 0 8px #00ffff;
+            margin-bottom: 30px;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .gallery-item {
+            background-color: #2a2a2a;
+            padding: 15px;
+            border-radius: 8px;
+            max-width: 320px;
+            border: 1px solid #dc143c;
+            box-shadow: 0 0 15px rgba(220, 20, 60, 0.3);
+            transition: all 0.3s;
+        }
+
+        /* Hover effect for images */
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            border-color: #00ffff;
+            box-shadow: 0 0 25px #00ffff;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        
+        .gallery-item p {
+            margin: 15px 0 0 0;
+            font-size: 1.1em;
+            color: #cccccc;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello World!</h1>
-    <p>My website is live on GitHub.</p>
+
+    <!-- YOUR NEW TITLE -->
+    <h1>Welcome to Wizards Page</h1>
+    <p class="subtitle">Explore the archives and join the community.</p>
+
+    <!-- SOCIAL LINKS -->
+    <div class="links">
+        <a href="https://discord.gg/your-invite-link" target="_blank">Join My Discord</a>
+        <a href="https://youtube.com/your-channel-url" target="_blank">YouTube Channel</a>
+    </div>
+
+    <hr>
+
+    <!-- IMAGE AND COMIC GALLERY -->
+    <h2>Comics & Creations</h2>
+    <div class="gallery">
+        
+        <div class="gallery-item">
+            <!-- Remember to upload your image to GitHub and change comic1.png to match your filename -->
+            <img src="comic1.png" alt="Comic Panel">
+            <p>Latest Comic</p>
+        </div>
+
+        <div class="gallery-item">
+            <!-- Remember to upload your image to GitHub and change photo1.jpg to match your filename -->
+            <img src="photo1.jpg" alt="Artwork">
+            <p>New Photo</p>
+        </div>
+
+    </div>
+
 </body>
 </html>
