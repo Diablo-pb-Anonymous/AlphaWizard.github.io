@@ -47,6 +47,10 @@
             border-radius: 12px;
             max-width: 320px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.2s; /* Added a smooth hover effect */
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px); /* Makes the card lift up slightly when hovered */
         }
         .gallery-item img {
             width: 100%;
@@ -57,6 +61,64 @@
             margin: 12px 0 0 0;
             font-size: 15px;
             color: #e0e0e0;
+        }
+
+        /* --- NEW MODAL CSS BELOW --- */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0, 0, 0, 0.85); /* Dark background */
+            backdrop-filter: blur(5px); /* Adds a nice blur to the background */
+        }
+        .modal-content {
+            background-color: #1a1a1a;
+            margin: 5% auto; /* Moved up slightly */
+            padding: 20px;
+            border: 1px solid #333;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 700px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .close-btn:hover, .close-btn:focus {
+            color: #ff0000;
+        }
+        .iframe-container {
+            margin-top: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+        .download-section {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #333;
+        }
+        #heartBtn {
+            background: none;
+            border: none;
+            font-size: 40px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            outline: none;
+        }
+        #heartBtn:hover {
+            transform: scale(1.15);
         }
     </style>
 </head>
@@ -77,21 +139,92 @@
     <h2>Comics & Photos</h2>
     <div class="gallery">
         
-        <!-- First Image Card -->
-        <div class="gallery-item">
-            <!-- REPLACE comic1.png WITH YOUR EXACT UPLOADED FILENAME -->
+        <!-- First Image Card (NOW CLICKABLE) -->
+        <!-- REMEMBER TO REPLACE 'YOUR_GDRIVE_FILE_ID' WITH YOUR ACTUAL FILE ID -->
+        <div class="gallery-item" style="cursor: pointer;" onclick="openModal('YOUR_GDRIVE_FILE_ID', 'Comic Page 1')">
             <img src="comic1.png" alt="Comic Panel">
             <p>Comic Page 1</p>
         </div>
 
         <!-- Second Image Card -->
         <div class="gallery-item">
-            <!-- REPLACE photo1.jpg WITH YOUR EXACT UPLOADED FILENAME -->
             <img src="photo1.jpg" alt="Uploaded Photo">
             <p>Cool Photo</p>
         </div>
 
     </div>
 
+    <!-- The Modal Popup -->
+    <div id="comicModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="comicTitle" style="margin-top: 10px;">Comic Title</h2>
+            
+            <!-- Read-Only PDF Viewer (Google Drive Iframe) -->
+            <div class="iframe-container">
+                <iframe id="pdfViewer" src="" width="100%" height="400px" frameborder="0" allow="autoplay"></iframe>
+            </div>
+
+            <!-- Like to Download Section -->
+            <div class="download-section">
+                <p style="color: #b3b3b3; margin-bottom: 10px;">Like this comic to download!</p>
+                <button id="heartBtn" onclick="likeAndDownload()">🤍</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- --- NEW JAVASCRIPT LOGIC BELOW --- -->
+    <script>
+        // Store the current file ID
+        let currentFileId = "";
+
+        // Function to open the modal
+        function openModal(fileId, title) {
+            currentFileId = fileId;
+            
+            // Set the title in the modal
+            document.getElementById("comicTitle").innerText = title;
+            
+            // Set up the Google Drive preview link
+            const previewUrl = `https://drive.google.com/file/d/${fileId}/preview`;
+            document.getElementById("pdfViewer").src = previewUrl;
+            
+            // Reset the heart button to white/unliked state
+            const heartBtn = document.getElementById("heartBtn");
+            heartBtn.innerText = "🤍"; 
+            
+            // Show the modal window
+            document.getElementById("comicModal").style.display = "block";
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById("comicModal").style.display = "none";
+            // Clear the iframe so it stops loading/playing when closed
+            document.getElementById("pdfViewer").src = ""; 
+        }
+
+        // Function triggered when the heart button is clicked
+        function likeAndDownload() {
+            const heartBtn = document.getElementById("heartBtn");
+            
+            // Change heart to red to show it is liked
+            heartBtn.innerText = "❤️";
+            
+            // Generate the direct download link for the Google Drive file
+            const downloadUrl = `https://drive.google.com/uc?export=download&id=${currentFileId}`;
+            
+            // Trigger the download automatically
+            window.location.href = downloadUrl;
+        }
+
+        // Close the modal if the user clicks anywhere outside of the content box
+        window.onclick = function(event) {
+            const modal = document.getElementById("comicModal");
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
 </body>
 </html>
