@@ -47,10 +47,10 @@
             border-radius: 12px;
             max-width: 320px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            transition: transform 0.2s; /* Added a smooth hover effect */
+            transition: transform 0.2s; 
         }
         .gallery-item:hover {
-            transform: translateY(-5px); /* Makes the card lift up slightly when hovered */
+            transform: translateY(-5px); 
         }
         .gallery-item img {
             width: 100%;
@@ -63,7 +63,7 @@
             color: #e0e0e0;
         }
 
-        /* --- NEW MODAL CSS BELOW --- */
+        /* Modal CSS */
         .modal {
             display: none; 
             position: fixed; 
@@ -72,12 +72,12 @@
             top: 0;
             width: 100%; 
             height: 100%; 
-            background-color: rgba(0, 0, 0, 0.85); /* Dark background */
-            backdrop-filter: blur(5px); /* Adds a nice blur to the background */
+            background-color: rgba(0, 0, 0, 0.85); 
+            backdrop-filter: blur(5px); 
         }
         .modal-content {
             background-color: #1a1a1a;
-            margin: 5% auto; /* Moved up slightly */
+            margin: 5% auto; 
             padding: 20px;
             border: 1px solid #333;
             border-radius: 12px;
@@ -139,11 +139,10 @@
     <h2>Comics & Photos</h2>
     <div class="gallery">
         
-        <!-- First Image Card (NOW CLICKABLE) -->
-        <!-- REMEMBER TO REPLACE 'YOUR_GDRIVE_FILE_ID' WITH YOUR ACTUAL FILE ID -->
-        <div class="gallery-item" style="cursor: pointer;" onclick="openModal('YOUR_GDRIVE_FILE_ID', 'Comic Page 1')">
-            <img src="comic1.png" alt="Comic Panel">
-            <p>Comic Page 1</p>
+        <!-- First Image Card (UPDATED WITH YOUR LINK AND TITLE) -->
+        <div class="gallery-item" style="cursor: pointer;" onclick="openModal('1A0eKGCCzA6V-_q39a3wlylCn6W7Zm6Mq', 'Evangelion v14 (2015)')">
+            <img src="comic1.png" alt="Evangelion Cover">
+            <p>Evangelion v14 (2015)</p>
         </div>
 
         <!-- Second Image Card -->
@@ -173,7 +172,7 @@
         </div>
     </div>
 
-    <!-- --- NEW JAVASCRIPT LOGIC BELOW --- -->
+    <!-- JavaScript Logic -->
     <script>
         // Store the current file ID
         let currentFileId = "";
